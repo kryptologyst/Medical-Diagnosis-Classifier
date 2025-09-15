@@ -7,7 +7,7 @@ An AI-powered diabetes risk assessment tool using machine learning to predict di
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-v1.3+-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 🌟 Features
+## Features
 
 - **AI-Powered Risk Assessment**: Advanced machine learning algorithms for diabetes prediction
 - **Interactive Web Interface**: Modern, responsive UI for easy patient data input
@@ -16,7 +16,7 @@ An AI-powered diabetes risk assessment tool using machine learning to predict di
 - **Comprehensive Analytics**: Detailed model performance metrics and visualizations
 - **Educational Tool**: Perfect for learning ML in healthcare applications
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -50,7 +50,7 @@ An AI-powered diabetes risk assessment tool using machine learning to predict di
 5. **Open your browser**
    Navigate to `http://localhost:5000`
 
-## 📊 Dataset
+## Dataset
 
 The project includes a sophisticated mock medical dataset generator that creates realistic patient data with:
 
@@ -72,7 +72,7 @@ The project includes a sophisticated mock medical dataset generator that creates
 | **Physical Activity** | Exercise level | Low/Moderate/High | Protective factor |
 | **Smoking Status** | Tobacco use | Never/Former/Current | Increases complications |
 
-## 🧠 Machine Learning Model
+## Machine Learning Model
 
 ### Algorithm Details
 
@@ -104,7 +104,7 @@ The model analyzes the relative importance of each health metric:
 7. **Smoking Status** - Complication risk
 8. **Gender** - Demographic factor
 
-## 🌐 Web Interface
+## Web Interface
 
 ### Main Features
 
@@ -260,7 +260,7 @@ The project includes comprehensive model evaluation:
 
 ⚠️ **IMPORTANT**: This tool is designed for **educational and research purposes only**. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions and diabetes screening.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
@@ -276,7 +276,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **scikit-learn** for machine learning algorithms
 - **Flask** for web framework
@@ -294,4 +294,3 @@ If you have any questions or need help with the project:
 ---
 
 **Made with ❤️ for healthcare AI education**
-# Medical-Diagnosis-Classifier
