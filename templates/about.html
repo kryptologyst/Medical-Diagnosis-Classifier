@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block title %}About - Medical Diagnosis AI{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-info-circle me-3"></i>
+                About Medical Diagnosis AI
+            </h1>
+            <p class="lead text-muted">
+                Advanced machine learning for diabetes risk assessment
+            </p>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-project-diagram me-2"></i>
+                    Project Overview
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    This medical diagnosis classifier uses advanced machine learning algorithms to predict diabetes risk 
+                    based on patient health metrics and lifestyle factors.
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-bullseye me-2 text-success"></i>Objectives</h5>
+                        <ul>
+                            <li>Early diabetes risk detection</li>
+                            <li>Personalized health assessments</li>
+                            <li>Educational health awareness</li>
+                            <li>Accessible AI-powered healthcare</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-cogs me-2 text-info"></i>Key Features</h5>
+                        <ul>
+                            <li>Real-time risk assessment</li>
+                            <li>Multiple ML model support</li>
+                            <li>Comprehensive health metrics</li>
+                            <li>Interactive web interface</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-code me-2"></i>
+                    Technical Implementation
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5><i class="fas fa-brain me-2 text-primary"></i>Machine Learning</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Algorithm:</strong> Logistic Regression</li>
+                            <li><strong>Alternative:</strong> Random Forest</li>
+                            <li><strong>Validation:</strong> Cross-validation</li>
+                            <li><strong>Optimization:</strong> Grid Search</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><i class="fas fa-database me-2 text-success"></i>Data Processing</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Features:</strong> 8 health metrics</li>
+                            <li><strong>Scaling:</strong> StandardScaler</li>
+                            <li><strong>Dataset:</strong> 1000+ patients</li>
+                            <li><strong>Split:</strong> 80/20 train/test</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><i class="fas fa-globe me-2 text-warning"></i>Web Technology</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Backend:</strong> Flask (Python)</li>
+                            <li><strong>Frontend:</strong> Bootstrap 5</li>
+                            <li><strong>API:</strong> RESTful endpoints</li>
+                            <li><strong>UI:</strong> Responsive design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Metrics -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-heartbeat me-2"></i>
+                    Health Metrics Analyzed
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card border-primary mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-primary">
+                                    <i class="fas fa-calendar-alt me-2"></i>Age
+                                </h6>
+                                <p class="card-text small">
+                                    Diabetes risk increases with age, particularly after 45 years.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-info mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-info">
+                                    <i class="fas fa-weight me-2"></i>BMI (Body Mass Index)
+                                </h6>
+                                <p class="card-text small">
+                                    Higher BMI correlates with increased diabetes risk due to insulin resistance.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-warning mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-warning">
+                                    <i class="fas fa-tint me-2"></i>Glucose Level
+                                </h6>
+                                <p class="card-text small">
+                                    Fasting glucose levels indicate current blood sugar control status.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-danger mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-danger">
+                                    <i class="fas fa-heartbeat me-2"></i>Blood Pressure
+                                </h6>
+                                <p class="card-text small">
+                                    Hypertension often accompanies diabetes and metabolic syndrome.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card border-secondary mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-secondary">
+                                    <i class="fas fa-venus-mars me-2"></i>Gender
+                                </h6>
+                                <p class="card-text small">
+                                    Gender influences diabetes risk patterns and hormonal factors.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-success mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-success">
+                                    <i class="fas fa-users me-2"></i>Family History
+                                </h6>
+                                <p class="card-text small">
+                                    Genetic predisposition significantly affects diabetes risk.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-primary mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-primary">
+                                    <i class="fas fa-running me-2"></i>Physical Activity
+                                </h6>
+                                <p class="card-text small">
+                                    Regular exercise improves insulin sensitivity and glucose metabolism.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card border-dark mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-dark">
+                                    <i class="fas fa-smoking-ban me-2"></i>Smoking Status
+                                </h6>
+                                <p class="card-text small">
+                                    Smoking increases diabetes risk and complicates blood sugar control.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Performance -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark">
+                <h3 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Model Performance
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h4 class="text-primary">85%+</h4>
+                                <p class="mb-0">Accuracy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h4 class="text-success">0.90+</h4>
+                                <p class="mb-0">ROC-AUC</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h4 class="text-info">80%+</h4>
+                                <p class="mb-0">Precision</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h4 class="text-warning">85%+</h4>
+                                <p class="mb-0">Recall</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p class="text-muted text-center">
+                        <small>Performance metrics based on cross-validation and test set evaluation</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="alert alert-danger">
+            <h5><i class="fas fa-exclamation-triangle me-2"></i>Important Medical Disclaimer</h5>
+            <p class="mb-0">
+                This tool is designed for <strong>educational and research purposes only</strong>. 
+                It should not be used as a substitute for professional medical advice, diagnosis, or treatment. 
+                Always consult with qualified healthcare professionals for medical decisions and diabetes screening.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

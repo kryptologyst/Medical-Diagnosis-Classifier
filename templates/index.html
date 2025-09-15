@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}Diabetes Risk Assessment - Medical Diagnosis AI{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-stethoscope me-3"></i>
+                Diabetes Risk Assessment
+            </h1>
+            <p class="lead text-muted">
+                AI-powered diabetes risk prediction based on your health metrics
+            </p>
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Disclaimer:</strong> This tool is for educational purposes only and should not replace professional medical advice.
+            </div>
+        </div>
+
+        <!-- Prediction Form -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-user-md me-2"></i>
+                    Patient Information
+                </h4>
+            </div>
+            <div class="card-body">
+                <form id="predictionForm">
+                    <div class="row">
+                        <!-- Age -->
+                        <div class="col-md-6 mb-3">
+                            <label for="age" class="form-label">
+                                <i class="fas fa-calendar-alt me-1"></i>Age (years)
+                            </label>
+                            <input type="number" class="form-control" id="age" name="age" 
+                                   min="18" max="100" required>
+                            <div class="form-text">Age between 18-100 years</div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-6 mb-3">
+                            <label for="gender" class="form-label">
+                                <i class="fas fa-venus-mars me-1"></i>Gender
+                            </label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="0">Female</option>
+                                <option value="1">Male</option>
+                            </select>
+                        </div>
+
+                        <!-- BMI -->
+                        <div class="col-md-6 mb-3">
+                            <label for="bmi" class="form-label">
+                                <i class="fas fa-weight me-1"></i>BMI (kg/m²)
+                            </label>
+                            <input type="number" class="form-control" id="bmi" name="bmi" 
+                                   min="15" max="50" step="0.1" required>
+                            <div class="form-text">Normal: 18.5-24.9, Overweight: 25-29.9, Obese: 30+</div>
+                        </div>
+
+                        <!-- Blood Pressure -->
+                        <div class="col-md-6 mb-3">
+                            <label for="blood_pressure" class="form-label">
+                                <i class="fas fa-heartbeat me-1"></i>Systolic Blood Pressure (mmHg)
+                            </label>
+                            <input type="number" class="form-control" id="blood_pressure" name="blood_pressure" 
+                                   min="80" max="200" required>
+                            <div class="form-text">Normal: <120, High: >140</div>
+                        </div>
+
+                        <!-- Glucose -->
+                        <div class="col-md-6 mb-3">
+                            <label for="glucose" class="form-label">
+                                <i class="fas fa-tint me-1"></i>Fasting Glucose (mg/dL)
+                            </label>
+                            <input type="number" class="form-control" id="glucose" name="glucose" 
+                                   min="60" max="300" required>
+                            <div class="form-text">Normal: 70-99, Prediabetes: 100-125, Diabetes: >126</div>
+                        </div>
+
+                        <!-- Family History -->
+                        <div class="col-md-6 mb-3">
+                            <label for="family_history" class="form-label">
+                                <i class="fas fa-users me-1"></i>Family History of Diabetes
+                            </label>
+                            <select class="form-control" id="family_history" name="family_history" required>
+                                <option value="">Select Option</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                        <!-- Physical Activity -->
+                        <div class="col-md-6 mb-3">
+                            <label for="physical_activity" class="form-label">
+                                <i class="fas fa-running me-1"></i>Physical Activity Level
+                            </label>
+                            <select class="form-control" id="physical_activity" name="physical_activity" required>
+                                <option value="">Select Level</option>
+                                <option value="0">Low (Sedentary)</option>
+                                <option value="1">Moderate (Some exercise)</option>
+                                <option value="2">High (Regular exercise)</option>
+                            </select>
+                        </div>
+
+                        <!-- Smoking Status -->
+                        <div class="col-md-6 mb-3">
+                            <label for="smoking_status" class="form-label">
+                                <i class="fas fa-smoking-ban me-1"></i>Smoking Status
+                            </label>
+                            <select class="form-control" id="smoking_status" name="smoking_status" required>
+                                <option value="">Select Status</option>
+                                <option value="0">Never Smoked</option>
+                                <option value="1">Former Smoker</option>
+                                <option value="2">Current Smoker</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-brain me-2"></i>
+                            Analyze Risk
+                            <span class="loading ms-2">
+                                <span class="spinner-border spinner-border-sm" role="status"></span>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="mt-4" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>
+                        Risk Assessment Results
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('predictionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.querySelector('button[type="submit"]');
+    const loading = document.querySelector('.loading');
+    const results = document.getElementById('results');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    loading.style.display = 'inline-block';
+    results.style.display = 'none';
+    
+    try {
+        // Collect form data
+        const formData = new FormData(this);
+        
+        // Send prediction request
+        const response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            displayResults(result);
+        } else {
+            displayError(result.error || 'An error occurred');
+        }
+        
+    } catch (error) {
+        displayError('Network error: ' + error.message);
+    } finally {
+        // Hide loading state
+        submitBtn.disabled = false;
+        loading.style.display = 'none';
+    }
+});
+
+function displayResults(result) {
+    const resultsDiv = document.getElementById('results');
+    const contentDiv = document.getElementById('resultContent');
+    
+    // Determine risk class
+    let riskClass = 'risk-low';
+    let riskIcon = 'fa-check-circle';
+    let riskColor = 'success';
+    
+    if (result.risk_level === 'Moderate Risk') {
+        riskClass = 'risk-moderate';
+        riskIcon = 'fa-exclamation-triangle';
+        riskColor = 'warning';
+    } else if (result.risk_level === 'High Risk') {
+        riskClass = 'risk-high';
+        riskIcon = 'fa-exclamation-circle';
+        riskColor = 'danger';
+    }
+    
+    const probability = (result.risk_probability * 100).toFixed(1);
+    const confidence = (result.confidence * 100).toFixed(1);
+    
+    contentDiv.innerHTML = `
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert ${riskClass} text-center">
+                    <i class="fas ${riskIcon} fa-3x mb-3"></i>
+                    <h3>${result.risk_level}</h3>
+                    <p class="mb-0">Diabetes Risk Probability: <strong>${probability}%</strong></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Assessment Details
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Risk Level:</strong> ${result.risk_level}</li>
+                            <li><strong>Probability:</strong> ${probability}%</li>
+                            <li><strong>Confidence:</strong> ${confidence}%</li>
+                            <li><strong>Prediction:</strong> ${result.prediction === 1 ? 'At Risk' : 'Low Risk'}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <div class="alert alert-info">
+                <h5><i class="fas fa-lightbulb me-2"></i>Recommendations</h5>
+                ${getRecommendations(result.risk_level)}
+            </div>
+        </div>
+    `;
+    
+    resultsDiv.style.display = 'block';
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function getRecommendations(riskLevel) {
+    const recommendations = {
+        'Low Risk': `
+            <ul>
+                <li>Maintain a healthy diet and regular exercise routine</li>
+                <li>Continue regular health check-ups</li>
+                <li>Monitor blood glucose levels annually</li>
+                <li>Keep a healthy weight</li>
+            </ul>
+        `,
+        'Moderate Risk': `
+            <ul>
+                <li>Consult with your healthcare provider about diabetes prevention</li>
+                <li>Consider lifestyle modifications (diet and exercise)</li>
+                <li>Monitor blood glucose levels more frequently</li>
+                <li>Focus on weight management if overweight</li>
+                <li>Reduce refined sugar and processed food intake</li>
+            </ul>
+        `,
+        'High Risk': `
+            <ul>
+                <li><strong>Consult with a healthcare professional immediately</strong></li>
+                <li>Consider comprehensive diabetes screening</li>
+                <li>Implement strict dietary changes</li>
+                <li>Start a supervised exercise program</li>
+                <li>Monitor blood glucose levels regularly</li>
+                <li>Consider medication if recommended by your doctor</li>
+            </ul>
+        `
+    };
+    
+    return recommendations[riskLevel] || recommendations['Low Risk'];
+}
+
+function displayError(message) {
+    const resultsDiv = document.getElementById('results');
+    const contentDiv = document.getElementById('resultContent');
+    
+    contentDiv.innerHTML = `
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>Error:</strong> ${message}
+        </div>
+    `;
+    
+    resultsDiv.style.display = 'block';
+}
+
+// BMI Calculator Helper
+document.getElementById('bmi').addEventListener('focus', function() {
+    if (!this.value) {
+        const height = prompt('Enter your height in cm (optional, for BMI calculation):');
+        const weight = prompt('Enter your weight in kg (optional, for BMI calculation):');
+        
+        if (height && weight) {
+            const heightM = parseFloat(height) / 100;
+            const bmi = parseFloat(weight) / (heightM * heightM);
+            this.value = bmi.toFixed(1);
+        }
+    }
+});
+</script>
+{% endblock %}

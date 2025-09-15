@@ -1,0 +1,356 @@
+{% extends "base.html" %}
+
+{% block title %}API Documentation - Medical Diagnosis AI{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-code me-3"></i>
+                API Documentation
+            </h1>
+            <p class="lead text-muted">
+                RESTful API for diabetes risk prediction integration
+            </p>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>
+                    Quick Start
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>The Medical Diagnosis API provides endpoints for diabetes risk prediction. All endpoints return JSON responses.</p>
+                <div class="alert alert-info">
+                    <strong>Base URL:</strong> <code>http://localhost:5000/api</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Endpoints -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-link me-2"></i>
+                    API Endpoints
+                </h3>
+            </div>
+            <div class="card-body">
+                <!-- Predict Endpoint -->
+                <div class="mb-4">
+                    <h4 class="text-success">
+                        <span class="badge bg-success me-2">POST</span>
+                        /api/predict
+                    </h4>
+                    <p>Predict diabetes risk for a patient based on health metrics.</p>
+                    
+                    <h6>Request Body:</h6>
+                    <pre class="bg-light p-3 rounded"><code>{
+  "Age": 45,
+  "Gender": 1,
+  "BMI": 28.5,
+  "BloodPressure": 140,
+  "Glucose": 120,
+  "FamilyHistory": 1,
+  "PhysicalActivity": 1,
+  "SmokingStatus": 0
+}</code></pre>
+
+                    <h6>Response:</h6>
+                    <pre class="bg-light p-3 rounded"><code>{
+  "prediction": 1,
+  "risk_probability": 0.75,
+  "confidence": 0.85,
+  "risk_level": "High Risk"
+}</code></pre>
+                </div>
+
+                <!-- Model Info Endpoint -->
+                <div class="mb-4">
+                    <h4 class="text-info">
+                        <span class="badge bg-info me-2">GET</span>
+                        /model_info
+                    </h4>
+                    <p>Get information about the trained model.</p>
+                    
+                    <h6>Response:</h6>
+                    <pre class="bg-light p-3 rounded"><code>{
+  "model_type": "logistic",
+  "best_params": {
+    "C": 1,
+    "penalty": "l2",
+    "solver": "liblinear"
+  },
+  "best_score": 0.92,
+  "test_accuracy": 0.88,
+  "roc_auc": 0.91,
+  "training_date": "2024-01-15T10:30:00",
+  "feature_names": ["Age", "Gender", "BMI", ...]
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parameters -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Request Parameters
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Range</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Age</code></td>
+                                <td>Integer</td>
+                                <td>18-100</td>
+                                <td>Patient age in years</td>
+                            </tr>
+                            <tr>
+                                <td><code>Gender</code></td>
+                                <td>Integer</td>
+                                <td>0, 1</td>
+                                <td>0 = Female, 1 = Male</td>
+                            </tr>
+                            <tr>
+                                <td><code>BMI</code></td>
+                                <td>Float</td>
+                                <td>15.0-50.0</td>
+                                <td>Body Mass Index (kg/m²)</td>
+                            </tr>
+                            <tr>
+                                <td><code>BloodPressure</code></td>
+                                <td>Integer</td>
+                                <td>80-200</td>
+                                <td>Systolic blood pressure (mmHg)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Glucose</code></td>
+                                <td>Integer</td>
+                                <td>60-300</td>
+                                <td>Fasting glucose level (mg/dL)</td>
+                            </tr>
+                            <tr>
+                                <td><code>FamilyHistory</code></td>
+                                <td>Integer</td>
+                                <td>0, 1</td>
+                                <td>0 = No family history, 1 = Has family history</td>
+                            </tr>
+                            <tr>
+                                <td><code>PhysicalActivity</code></td>
+                                <td>Integer</td>
+                                <td>0, 1, 2</td>
+                                <td>0 = Low, 1 = Moderate, 2 = High</td>
+                            </tr>
+                            <tr>
+                                <td><code>SmokingStatus</code></td>
+                                <td>Integer</td>
+                                <td>0, 1, 2</td>
+                                <td>0 = Never, 1 = Former, 2 = Current</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Response Format -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark">
+                <h3 class="mb-0">
+                    <i class="fas fa-file-code me-2"></i>
+                    Response Format
+                </h3>
+            </div>
+            <div class="card-body">
+                <h5>Successful Response</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>prediction</code></td>
+                                <td>Integer</td>
+                                <td>0 = No diabetes risk, 1 = Diabetes risk</td>
+                            </tr>
+                            <tr>
+                                <td><code>risk_probability</code></td>
+                                <td>Float</td>
+                                <td>Probability of diabetes (0.0-1.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code>confidence</code></td>
+                                <td>Float</td>
+                                <td>Model confidence in prediction (0.0-1.0)</td>
+                            </tr>
+                            <tr>
+                                <td><code>risk_level</code></td>
+                                <td>String</td>
+                                <td>"Low Risk", "Moderate Risk", or "High Risk"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4">Error Response</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "error": "Error message description"
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-terminal me-2"></i>
+                    Code Examples
+                </h3>
+            </div>
+            <div class="card-body">
+                <!-- Python Example -->
+                <h5>Python (requests)</h5>
+                <pre class="bg-light p-3 rounded"><code>import requests
+import json
+
+url = "http://localhost:5000/api/predict"
+data = {
+    "Age": 45,
+    "Gender": 1,
+    "BMI": 28.5,
+    "BloodPressure": 140,
+    "Glucose": 120,
+    "FamilyHistory": 1,
+    "PhysicalActivity": 1,
+    "SmokingStatus": 0
+}
+
+response = requests.post(url, json=data)
+result = response.json()
+
+print(f"Risk Level: {result['risk_level']}")
+print(f"Probability: {result['risk_probability']:.2%}")
+</code></pre>
+
+                <!-- JavaScript Example -->
+                <h5 class="mt-4">JavaScript (fetch)</h5>
+                <pre class="bg-light p-3 rounded"><code>const url = 'http://localhost:5000/api/predict';
+const data = {
+    Age: 45,
+    Gender: 1,
+    BMI: 28.5,
+    BloodPressure: 140,
+    Glucose: 120,
+    FamilyHistory: 1,
+    PhysicalActivity: 1,
+    SmokingStatus: 0
+};
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(result => {
+    console.log('Risk Level:', result.risk_level);
+    console.log('Probability:', (result.risk_probability * 100).toFixed(1) + '%');
+})
+.catch(error => console.error('Error:', error));
+</code></pre>
+
+                <!-- cURL Example -->
+                <h5 class="mt-4">cURL</h5>
+                <pre class="bg-light p-3 rounded"><code>curl -X POST http://localhost:5000/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "Age": 45,
+    "Gender": 1,
+    "BMI": 28.5,
+    "BloodPressure": 140,
+    "Glucose": 120,
+    "FamilyHistory": 1,
+    "PhysicalActivity": 1,
+    "SmokingStatus": 0
+  }'
+</code></pre>
+            </div>
+        </div>
+
+        <!-- Error Codes -->
+        <div class="card mb-4">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Error Codes
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Status Code</th>
+                                <th>Description</th>
+                                <th>Common Causes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge bg-success">200</span></td>
+                                <td>Success</td>
+                                <td>Request processed successfully</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-warning">400</span></td>
+                                <td>Bad Request</td>
+                                <td>Invalid parameters, missing fields</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-danger">500</span></td>
+                                <td>Internal Server Error</td>
+                                <td>Model not loaded, server error</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rate Limiting -->
+        <div class="alert alert-info">
+            <h5><i class="fas fa-info-circle me-2"></i>Usage Notes</h5>
+            <ul class="mb-0">
+                <li>All requests should include proper Content-Type headers</li>
+                <li>The API is designed for educational purposes</li>
+                <li>No authentication required for local development</li>
+                <li>Ensure all required parameters are provided</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
